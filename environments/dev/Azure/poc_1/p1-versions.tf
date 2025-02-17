@@ -14,5 +14,6 @@ terraform {
 # Provider Block 声明 Azure 资源管理器作为提供程序。
 provider "azurerm" {
  features {}          
+ subscription_id = "your-subscription-id" # 你的 Azure 订阅 ID
 }
 
