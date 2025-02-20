@@ -31,3 +31,17 @@ resource "azurerm_public_ip" "mypublicip" {
     }
 }
 
+# Resource: Create Network Interface
+resource "azurerm_network_interface" "myvm1nic" {
+  name                = "vm1-nic"
+  # Attach resource group and location
+  location            = azurerm_resource_group.myrg.location
+  resource_group_name = azurerm_resource_group.myrg.name
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.mysubnet.id
+    private_ip_address_allocation = "Dynamic"
+    public_ip_address_id = azurerm_public_ip.mypublicip.id 
+  }
+}
