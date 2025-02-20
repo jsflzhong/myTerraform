@@ -9,3 +9,12 @@ resource "azurerm_virtual_network" "myvnet" {
     #继承(引用)资源组的名称
     resource_group_name = azurerm_resource_group.myrg.name
 }
+
+# Resource: subnet
+resource "azurerm_subnet" "mysubnet" {
+  name                 = "mysubnet-1"
+  # Attach Group and VPN
+  resource_group_name  = azurerm_resource_group.myrg.name
+  virtual_network_name = azurerm_virtual_network.myvnet.name
+  address_prefixes     = ["10.0.2.0/24"]
+}
